@@ -1,7 +1,7 @@
 # BiYong商户平台接口文档
 
 返回值统一格式：
-    
+
     {
       "status":"0",                 // 0 代表接口请求成功
       "message":"",                 // 错误信息，请求成功无此字段
@@ -84,7 +84,6 @@
       "phone":"86-13300000000",   // 如果 phoneAuth 为 false，此字段不返回
     }
 
-
 ### 4. 获取用户资金流水
 
 > /biyong-user/balance/page
@@ -133,9 +132,7 @@
       "projectName": "Ethereum",                  // 项目名称
       "isDepositOpen": true/false                 // 是否开放转入
     }
-    
-    
-    
+
 ### 6. 获取用户资产余额
 
 > /biyong-user/balance/coin
@@ -153,7 +150,7 @@
       "coinName" : "ETH",
       "balance": 10.0001,
     }
-    
+
 ### 7. 获取用户资产余额列表
 
 > /biyong-user/balance/coin/list
@@ -176,7 +173,7 @@
           "balance": 10.00001,
         }
     ]
-    
+
 ## 2. 其它接口
 
 ### 1. 通信测试接口
@@ -220,7 +217,7 @@
         ...(more records)...
       ]
     }
-    
+
 > /common/token-info/page (第一版旧接口)
 
 请求参数:
@@ -314,8 +311,7 @@
       "createTime" : 1547454102000,    // 订单创建时间
       "expireTime" : 1547464102000,    // 订单超时时间
     }
-    
-    
+
 ### 3. 查询单笔 BiYong 支付订单
 
 > /b-pay/order/query
@@ -362,7 +358,7 @@
       // 以下信息在订单结算后会出现 (status: SETTLED)
       "settleTime" : 1547494102000,    // 订单结算时间
     }
-    
+
 |`status`|`描述`|
 |---|---|
 |DEFAULT|新订单|
@@ -376,7 +372,6 @@
 |SETTLED|结算完毕|
 |SETTLED_REFUNDING|退款中(已结算订单发起退款)|
 |SETTLED_REFUND_SUCCESS|退款成功(已结算订单)|
-
 
 ### 4. BiYong 支付订单关闭
 
@@ -423,7 +418,7 @@
       "pageNo"    : 0,              // 必填 页码
       "pageSize"  : 100,            // 必填 每页数据，最大为1000条
     }
-    
+
 返回data:
 
     {
@@ -433,7 +428,7 @@
         ...
       ]
     }
-    
+
 ### 7. 设置回调信息
 
 > /b-pay/callback/set
@@ -451,7 +446,7 @@
       // 不填此项则回调不使用AES进行加密
       "aesMode": "CBC/PKCS5Padding",
     }
-    
+
 返回data: null
 
 `注意` 设置回调信息时，会立刻调用此接口。
@@ -484,7 +479,6 @@ url中添加参数 test=true（如 http://www.xxxx.com/b-pay/callback?test=true�
 可以直接使用 SDK 中的 Utils.MessageCipher#serverDecrypt 方法对进行解密及验签
 
 > 回调接口返回 http status: 200 视为通知成功
-
 
 ### 企业付款-创建订单
 
@@ -527,7 +521,6 @@ status，outStatus，inStatus定义如下
 |PROCESSING|进行中|
 |SUCCESS|成功|
 
-    
 ### 企业付款-查询订单
 
 > /merchant-pay/order/query
@@ -556,3 +549,69 @@ status，outStatus，inStatus定义如下
     }
 
 字段含义跟上面的接口一致。
+
+## 4. 策略助手相关
+
+### 1. 获取可配置币种
+
+> /strategy-assistant/coin/get-all
+
+请求参数:
+
+    {}
+
+返回data:
+
+    [
+        {
+            "coinName": "SHIB",// 币种名称
+            "coinId": 2 // 币种id
+            "contractAddress": "0x95ad61b0a150d79219dcf64e1e6cc01f0b64c4ce" // 合约地址
+            "chain": "ethereum" // 链名(ethereum,bsc)
+            "coinFullName": "SHIB",// 币种全称
+        },
+        {
+            "coinName": "DOGE",// 币种名称
+            "coinId": 3 // 币种id
+            "contractAddress": "0x95ad61b0a150d79219dcf64e1e6cc01f0b64c4ce" // 合约地址
+            "chain": "bsc" // 链名(ethereum,bsc)
+            "coinFullName": "ADOGE",// 币种全称
+        }
+    ]
+
+### 2. 用户添加或者取消关注币种
+
+> /strategy-assistant/user/change-coin
+
+请求参数:
+
+    {
+        "openId": "aas123sdqwe",// 用户openId
+        "coinId": 2,// 币种id
+        "operationType": 0 // 操作类型（0:取消关注，1:添加关注）
+    }
+
+返回data:
+
+    {
+        "status":"SUCCESS", //此次操作处理状态
+        "focusCoinId":[1,2,5] //此次操作后当前关注的币种id
+    }
+
+### 3. 消息通知
+
+> /strategy-assistant/coin/message
+
+请求参数:
+
+    {
+        "code": "BUY_STOCK",// 预警信息code
+        "coinId": 2,// 币种id
+        "timestamp": 1659940250559 // 消息创建时间,时间戳，毫秒级
+    }
+
+返回data:
+
+    {
+        "status":"SUCCESS" //此次操作处理状态
+    }
