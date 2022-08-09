@@ -603,6 +603,7 @@ status，outStatus，inStatus定义如下
 请求参数:
 
     {
+        "messageId": "asd1292484124",// 消息唯一标识，做幂等性
         "code": "BUY_STOCK",// 预警信息code
         "coinName": "SHIB",// 币种名称
         "timestamp": 1659940250559 // 消息创建时间,时间戳，毫秒级
