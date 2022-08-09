@@ -564,15 +564,13 @@ status，outStatus，inStatus定义如下
 
     [
         {
-            "coinName": "SHIB",// 币种名称
-            "coinId": 2 // 币种id
+            "coinName": "SHIB",// 币种名称(不会更改)
             "contractAddress": "0x95ad61b0a150d79219dcf64e1e6cc01f0b64c4ce" // 合约地址
             "chain": "ethereum" // 链名(ethereum,bsc)
             "coinFullName": "SHIB",// 币种全称
         },
         {
-            "coinName": "DOGE",// 币种名称
-            "coinId": 3 // 币种id
+            "coinName": "DOGE",// 币种名称(不会更改)
             "contractAddress": "0x95ad61b0a150d79219dcf64e1e6cc01f0b64c4ce" // 合约地址
             "chain": "bsc" // 链名(ethereum,bsc)
             "coinFullName": "ADOGE",// 币种全称
@@ -587,15 +585,15 @@ status，outStatus，inStatus定义如下
 
     {
         "openId": "aas123sdqwe",// 用户openId
-        "coinId": 2,// 币种id
+        "coinName": "SHIB",// 币种名称
         "operationType": 0 // 操作类型（0:取消关注，1:添加关注）
     }
 
 返回data:
 
     {
-        "status":"SUCCESS", //此次操作处理状态
-        "focusCoinId":[1,2,5] //此次操作后当前关注的币种id
+        "status":"SUCCESS", //此次操作处理状态,SUCCESS:成功，FAILURE：失败
+        "focusCoinName":["SHIB","BNB","ETH"] //此次操作后当前关注的币种id
     }
 
 ### 3. 消息通知
@@ -606,12 +604,12 @@ status，outStatus，inStatus定义如下
 
     {
         "code": "BUY_STOCK",// 预警信息code
-        "coinId": 2,// 币种id
+        "coinName": "SHIB",// 币种名称
         "timestamp": 1659940250559 // 消息创建时间,时间戳，毫秒级
     }
 
 返回data:
 
     {
-        "status":"SUCCESS" //此次操作处理状态
+        "status":"SUCCESS" //此次操作处理状态,SUCCESS:成功，FAILURE：失败
     }
