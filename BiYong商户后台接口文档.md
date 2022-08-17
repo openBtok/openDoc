@@ -593,7 +593,7 @@ status，outStatus，inStatus定义如下
 
     {
         "status":"SUCCESS", //此次操作处理状态,SUCCESS:成功，FAILURE：失败
-        "focusCoinName":["SHIB","BNB","ETH"] //此次操作后当前关注的币种id
+        "coinNames":["SHIB","BNB","ETH"] //此次操作后当前关注的币种id
     }
 
 ### 3. 消息通知
