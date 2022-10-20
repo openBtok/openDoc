@@ -568,12 +568,16 @@ status，outStatus，inStatus定义如下
             "contractAddress": "0x95ad61b0a150d79219dcf64e1e6cc01f0b64c4ce" // 合约地址
             "chain": "ethereum" // 链名(ethereum,bsc)
             "coinFullName": "SHIB",// 币种全称
+            "contractDecimal": 18
+            "coinIconUrl": "https://bna-pic.oss-cn-beijing.aliyuncs.com/ico/S20221017184546.png" //币种logo
         },
         {
             "coinName": "DOGE",// 币种名称(不会更改)
             "contractAddress": "0x95ad61b0a150d79219dcf64e1e6cc01f0b64c4ce" // 合约地址
             "chain": "bsc" // 链名(ethereum,bsc)
             "coinFullName": "ADOGE",// 币种全称
+            "contractDecimal": 18
+            "coinIconUrl": "https://bna-pic.oss-cn-beijing.aliyuncs.com/ico/S20221017184546.png" //币种logo
         }
     ]
 
